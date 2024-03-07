@@ -1,0 +1,25 @@
+NurseID,1,2,3,4,5,6,7,8,9,10,11,12,13,14
+A, , ,D,D,D, , , , ,D,D,D,D,D
+B, ,D,D,D,D, , ,D,D,L, , ,D,L
+C,D, , ,E,L,L,L,L, , ,D,L, , 
+D, ,L,L,L,L, , ,E,E,L, , ,E,E
+E,E,E,E, , , , , , ,E,E,E,E,E
+F, ,E,E,D,D, , ,E,E,E, , ,D,D
+G,L,L,L, , ,E,E, , ,E,L,L, , 
+H, , ,E,E,E,D,D, , ,D,D,D, , 
+I,D,D,D,D, , , ,L,L,L, , ,L,L
+J,D, , ,E,D, , ,E,D,D, , ,D,D
+K,E,D, , , ,E,D,D,D,D,D, , , 
+L,L,L, , , ,D,D,D,L,L,L, , , 
+M, , ,D,D,L, , , ,E,E,E,L,L,L
+N, ,D,D,L,L,L,L, , , ,D,L, , 
+O,L, , , ,D,D,D,D,D,D, , , , 
+P, , , , , ,E,E,D, , , ,E, , 
+Q, , ,L, , , , ,L, , , , ,D,D
+R, , , , , ,D,D,D, , , ,D, , 
+S, ,E, , , ,E,E,E, , , , , , 
+T, , , ,E,E, , , , , , , ,D,D
+Problem status: Solved to optimality
+
+The minimised penalty = 1001
+Time elapsed: 70.7306s.

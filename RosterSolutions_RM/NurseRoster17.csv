@@ -1,0 +1,39 @@
+NurseID,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56
+A,N,N, , ,E,D,D,D, , ,N,N, , ,L,L,L,L,L, , ,E,E,N, , ,E,E,D, , ,D,D,L,N, , , ,E,E,E,E,D, , ,D,D, , ,D,D,D,D,D, , 
+B, , , ,E,E,L,L,L, , ,E,E, , , ,E,E, , ,L,L,L,L,L, , ,E,L,L, , ,E,L, , , ,E,E,E, , , ,E,E,E,E, , , , , , , ,E,E,E
+C,E,E,E, , ,E,E,E,D,D, , , , , ,E,D,D,D, , ,D,N,N,N,N, , ,D,D,D,D,D, , ,D,N, , ,N,N,N,N,N, , ,E,E,D, , , , ,D,D,D
+D,D,L, , , ,L,L,L,L,L, , ,D,L, , ,E,D,D,D,L, , ,E,E,E, , ,D,L,L,L,L, , , , , , ,D,D,D, , , ,L,L, , ,E,D,D,D,D, , 
+E, ,D,D, , ,E,E,D, , , ,D,D,D,D,D, , , , , , ,N,N,N,N, , ,E,E, , , ,N,N,N,N, , ,E,D,D, , , ,D,D, , , , ,D,D,N, , 
+F,L,L,L,N,N, , , , , , ,E,E,E,E,E, , ,D,D,D, , ,D,D,D,D,D, , ,N,N, , , ,E,N,N, , ,E,L, , ,L,L, , , ,D,D,D, , , , 
+G,N,N,N, , ,N,N,N,N,N, ,L,L,L, , , ,L,L, , ,L,L,L,L,L, , ,L,L,L,N,N, , ,E,E,E,E,L, , , , , ,E,E,E,E,E, , , ,L,L,L
+H, , ,L,L, , , , , ,L,L,L,L,L, , , ,L,L,L,L,L, , ,E,E,L,L,L, , ,L,L, , , , , ,L,L,L,L,L, , ,L,L, , ,L,L, , , , , 
+I,E, , ,E,E,E,E,E, , ,D,D,D,D,D, , ,D,D, , , ,E,E,E,E, , ,E,E,D,D, , , ,E,E,D,D, , ,E,E,D,D,D, , , , , ,E,E,E,E,E
+J, , , ,L,L,L,L,L, , ,E,E,E,E, , ,D,D, , , , ,E,L, , ,D,L,L,L,L, , , , ,L,L,L,L,L, , ,E,D,D,D,D, , ,D,D, , ,E,D,D
+K,D,D,D, , ,D,D,D,D,D, , ,D,D,N, , ,N,N, , ,E,D,D,D,D, , ,E,E,E,E, , , , ,E,E,D,D, , , ,D,D, , ,E,N, , ,N,N,N,N,N
+L,L, , ,E,E,L,L,N, , ,L,L, , ,E,N, , ,E,L,L, , ,E,E,L, , , , , ,L,N, , ,L,L,N,N, , ,N,N,N,N,N, , , ,L,L,L, , ,L,L
+M,L,L, , , ,L,L,L,L,L, , ,L,L,L,L,L, , , , , ,D,D,D,D, , ,D,D,D,D,D, , ,D,D, , , ,D,D,D,L,L, , ,L,L,L, , , , , , 
+N,E,L,L,N, , , , ,D,D,D,N, , ,D,D,D, , ,D,D,D, , ,L,L,L,N,N, , ,L,L,L,L,L, , ,D,D,L,N, , ,N,N,N, , ,E,L,L,L, , , 
+O, , , , , , , ,E,E,E,E,E, , , , , ,E,E,E,N,N, , , ,E,E,E,N,N, , , ,E,E,E,E,N, , , , ,N,N,N,N,N, , ,E,E,E, , ,E,E
+P,D,D,D,D, , , ,D,D,D,D,D, , , ,D,D,D,D,D, , ,L,L,L,L, , ,D,L,N, , ,D,D,D,D, , ,D,D,D,D,N, , , , , ,L,N, , ,D,L,L
+Q,N, , ,E,E, , , ,E,L,L, , , ,N,N, , ,E,E,E,N,N, , , ,E,E,E,E,E, , ,E,E,L,N, , ,E,E,E, , , ,L,L,N, ,L,L,N, , , , 
+R,D,D,D,D,D, , ,E,D,D,N, , , ,D,N,N,N,N, , ,E,D, , ,N,N,N,N,N, , ,E,E,E,E,D, , ,E,D,D, , ,E,E,E, , , , , , ,E,D,D
+S,L, , , ,D,D,L,L, , ,D,L, , , ,E,E,E,E, , , , , ,D,L,L,L,L, , , ,E,D,L,L,L, , ,D,L,L,L, , ,E,E, , ,D,D,L,L,L, , 
+T,E,E,E, , ,E,E,N, , , , ,N,N,N, , ,E,E, , , ,L,L,N,N, , ,E,N,N,N, , , ,E,E,E, , ,E,E,E,E,N, , ,L,L,L, , ,L,L, , 
+U, ,D,L,N,N, , , ,D,D, , ,L,L,L,L,N, , , , ,D,D,D,D,D, , , ,E,D,D,D,L, , ,L,N,N,N, , , , ,E,E,E,E,E, , ,E,E,D,D,D
+V,E,E,E,D,N, , ,L,N, , ,N,N,N, , ,E,E,E,E,E, , ,E,E,D,L,N, , , , , , ,L,L,L,L,L, , , ,E,E,E,D,D, , ,E,E,D,D,L, , 
+W, , ,E,D,D, , , , , , , , , ,E,D,D,D,N, , ,E,E,E,D,D, , , , ,D,D,D,D,N, , ,D,D,D,L,N, , , ,E,D,D,D,N, , , ,N,N,N
+X,D,D,D,D,L, , ,L,L, , , , , ,L,L,L,L,L, , ,D,D, , ,L,L,L,L,L, , , ,D,D,D,D,L, , ,E,L,L,L,L, , ,D,D,D,D,D, , , , 
+Y, ,L,L, , ,N,N,N, , ,D,D,D,D,D, , , ,N,N,N,N,N, , , , , , , ,E,E,E,E,E, , ,E,D,D, , ,L,L,L,L, , , ,N,N, , , , , 
+Z, ,E,E, , ,N,N, , ,E,E,E,E,E, , ,E,N,N, , , , , , ,E,E,E,N,N, , ,E,E,E,N,N, , , , , , , ,E,E,N, , , , ,E,N, , , 
+AA,L,N,N, , ,D,D,D,L,L, , ,E,E, , ,D,D,D, , , ,E,D,D, , , , ,E,E,E,E, , , ,D,D, , ,E,E,E,E,D, , ,D,D,N,N,N, , , , 
+AB, , , , , ,E,E,E,E,D, , ,L,L,L,L,L, , ,E,D,D,D,D, , , , ,D,N,N,N,N, , , ,L,L,N,N, , ,D,D,D, , ,D,N,N,N,N, , , , 
+AC, , ,E,E,E,E,N, , ,D,D,D, , ,D,D,N, , ,D,D,L,L,L, , ,E,D,D,D,D, , , , , , ,D,D,D, , ,D,L, , ,L,L,L, , ,L,L,L, , 
+AD,N, , ,D,D,D,D,D, , , ,D,L,L,N, , ,L,L,L,L, , ,E,D, , , ,L,L,L,L, , , , ,D,L,N,N, , , , , ,L,N,N,N, , ,N,N, , , 
+AE,L,N,N,N, , , , ,E,E,E,N, , ,D,D,L,L, , , ,N,N,N, , ,D,D,D,D, , , , , ,D,D,D, , ,D,D,D,D, , , ,L,L,N, , ,E,D,L,L
+AF, ,E,D,L,L, , ,N,N,N, , ,N,N,N,N, , , ,E,E,E,E, , , , , , , , ,E,D,D,N, , , ,E,E, , ,L,L,L,N, , , ,E,E,N, , ,D,D
+Problem status: Unfinished
+
+The OM penalty = 6052
+The Underworked penalty = 42120
+The minimised penalty = 48172
+Time elapsed: 3606.1s.

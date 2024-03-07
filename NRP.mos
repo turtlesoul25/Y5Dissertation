@@ -1,0 +1,404 @@
+model nurse_rostering
+  uses "mmxprs", "mmsystem", "kalis"
+  setparam("XPRS_MAXTIME", 3600)
+  setparam("XPRS_VERBOSE",true)
+  starttime:= gettime
+
+  ! Choose a dataset
+  dataset := 1
+
+  ! Choose a datafile
+  datafname := jointext(["Instance_dats/Instance", dataset, ".dat"], "")          ! To load the data
+  ! csvfname := jointext(["RosterSolutions/NurseRoster", dataset, ".csv"], "")    ! CSV file to which solutions should be written
+
+  writeln("Begin running model")
+
+  ! ---------------------------------------------------------------------------
+  ! ----------------------   Loading Problem Data   ---------------------------
+  ! ---------------------------------------------------------------------------
+  
+  declarations
+      NurseID:                          set of string                              ! Set of Nurses (i)
+      PlanningHorizon:                  integer                                    ! Number of days in the planning horizon (d)
+      Days:                             set of integer                             ! Set of days in the planning horizon
+      NumWeekends:                      integer                                    ! Number of weekends in planning horizon
+      Weekends:                         set of integer                             ! Set of weekends in the planning horizon
+      ShiftID:                          set of string                              ! Types of shifts (t)
+      ForbiddenShifts:                  array(ShiftID, ShiftID) of string          ! Set of shift types that cannot be assigned immediately after shift type t
+      DaysOff:                          array(NurseID) of set of integer           ! Set of days that nurse i cannot be assigned shifts
+      ShiftLength:                      array(ShiftID) of integer                  ! Length of shift type (in mins)
+      MaxShifts:                        array(NurseID, ShiftID) of integer         ! Maximum number of shifts of type t that can be assigned to nurse i
+      MaxTotalMinutes:                  array(NurseID) of integer                  ! Maximum number of minutes that nurse i must be assigned
+      MinTotalMinutes:                  array(NurseID) of integer                  ! Minimum number of minutes that nurse i must be assigned
+      MaxConsecutiveShifts:             array(NurseID) of integer                  ! Maximum number of consecutive shifts that nurse i must work
+      MinConsecutiveShifts:             array(NurseID) of integer                  ! Minimum number of consecutive shifts that nurse i must work
+      MinConsecutiveDaysOff:            array(NurseID) of integer                  ! Minimum number of consecutive days off that nurse i can be assigned
+      MaxWeekends:                      array(NurseID) of integer                  ! Maximum number of weekends that nurse i can work
+      PreferredCoverage:                array(Days, ShiftID) of integer            ! Preferred total nurses assigned to shift t on day d
+      UnderstaffedPenalty:              array(Days, ShiftID) of integer            ! Penalty if assignment is below preferred cover for shift t on day d
+      OverstaffedPenalty:               array(Days, ShiftID) of integer            ! Penalty if assignment is above preferred cover for shift t on day d
+      ShiftAssigned:                    array(NurseID, Days, ShiftID) of mpvar     ! Binary variable for whether shift t is assigned to nurse i on day d or not
+      WeekendShiftAssigned:             array(NurseID, Weekends) of mpvar          ! Binary variable for whether nurse i works on weekend w or not
+      NursesBelowPreferredCoverage:     array(Days, ShiftID) of mpvar              ! Total nurses below preferred coverage for shift t on day d
+      NursesAbovePreferredCoverage:     array(Days, ShiftID) of mpvar              ! Total nurses above preferred coverage for shift
+      ShiftOnPenalty:                   array(NurseID, Days, ShiftID) of integer   ! Penalty if shift t is not assigned to nurse i on day d (shift on request is not granted)
+      ShiftOffPenalty:                  array(NurseID, Days, ShiftID) of integer   ! Penalty if shift t is assigned to nurse i (shift off request is not granted)
+      ForbiddenSets:                    array(ShiftID) of set of string
+  end-declarations
+
+
+  initializations from datafname
+    NurseID Days Weekends PlanningHorizon NumWeekends ShiftID  DaysOff ShiftLength MaxShifts
+    MaxTotalMinutes MinTotalMinutes MaxConsecutiveShifts MinConsecutiveShifts MinConsecutiveDaysOff
+    MaxWeekends PreferredCoverage UnderstaffedPenalty OverstaffedPenalty ForbiddenShifts
+    ShiftOffPenalty ShiftOnPenalty
+  end-initializations
+
+  ! ---------------------------------------------------------------------------
+  ! ----------------------    Objective Function    ---------------------------
+  ! ---------------------------------------------------------------------------
+  ! Define Objective: to minimize penalties
+
+  ShiftOnRequestPenalty := sum(i in NurseID, d in Days, t in ShiftID) ShiftOnPenalty(i,d,t)*(1 - ShiftAssigned(i,d,t))
+  ShiftOffRequestPenalty := sum(i in NurseID, d in Days, t in ShiftID) ShiftOffPenalty(i,d,t)*ShiftAssigned(i,d,t)
+  UndercoverPenalty := sum(d in Days, t in ShiftID) UnderstaffedPenalty(d,t)*NursesBelowPreferredCoverage(d,t)
+  OvercoverPenalty  := sum(d in Days, t in ShiftID) OverstaffedPenalty(d,t)*NursesAbovePreferredCoverage(d,t)
+
+  TotalPenalty := UndercoverPenalty + OvercoverPenalty  + ShiftOnRequestPenalty + ShiftOffRequestPenalty
+
+  ! --------------------------------------------------------------------------
+  ! ----------------------    Constraints     --------------------------------
+  ! --------------------------------------------------------------------------
+  ! Define the Constraints
+
+
+
+  ! Set integer and binary variables
+  forall(i in NurseID, d in Days, t in ShiftID, w in Weekends) do
+    ShiftAssigned(i,d,t) is_binary
+    WeekendShiftAssigned(i,w) is_binary
+    NursesBelowPreferredCoverage(d,t) is_integer
+    NursesAbovePreferredCoverage(d,t) is_integer
+  end-do
+
+
+  ! HC1: An employee cannot be assigned more than one shift per day
+  forall (i in NurseID, d in Days) do
+    ShiftCS(i,d) := sum(t in ShiftID) ShiftAssigned(i,d,t) <= 1
+  end-do
+
+
+
+
+  ! HC2: No Forbidden shifts
+  forall (t in ShiftID, Ft in ShiftID) do
+      if ForbiddenShifts(t, Ft) <> "NA" then
+        ForbiddenSets(t) += {ForbiddenShifts(t, Ft)}
+      end-if
+  end-do
+
+  forall (d in 1..PlanningHorizon-1) do
+    forall(i in NurseID, t in ShiftID) do
+    ForbiddenCS(i,d,t) := ShiftAssigned(i,d,t) + sum(u in ForbiddenSets(t)) ShiftAssigned(i, d+1, u) <= 1
+    end-do
+  end-do
+
+
+
+  ! HC3: Maximum number of shifts of each type assigned to an employee
+  ! HC8: Days off as per request
+    forall (i in NurseID, t in ShiftID) do
+      ! Max shifts constraint
+      MaxShiftsCS(i,t) := sum(d in Days) ShiftAssigned(i,d,t) <= MaxShifts(i,t)
+
+      ! Days Off constraint
+      forall (d in DaysOff(i)) do
+        DaysOffCS(i,d,t) := ShiftAssigned(i, d, t) = 0
+      end-do
+    end-do
+
+
+
+  ! HC4: Minimum and Maximum Work times
+  ! HC5: Minimum and Maximum consecutive shifts
+  ! HC6: Minimum Consecutive Days Off
+  ! HC7: Maximum number of Weekends worked by nurses
+    forall (i in NurseID) do
+
+      !  Minimum and maximum work times
+      MinWorkTimeCS(i) := sum(d in Days, t in ShiftID) ShiftLength(t)*ShiftAssigned(i,d,t) >= MinTotalMinutes(i)
+      MaxWorkTimeCS(i) := sum(d in Days, t in ShiftID) ShiftLength(t)*ShiftAssigned(i,d,t) <= MaxTotalMinutes(i)
+
+      ! Maximum consecutive shifts
+      cmax := MaxConsecutiveShifts(i)
+      maxd := PlanningHorizon - cmax
+      forall (d in 1..maxd) do
+        MaxConsecutiveShiftsCS(i,d) :=  sum(t in ShiftID, j in d..d+cmax) ShiftAssigned(i,j,t) <= cmax
+      end-do
+
+      ! Minimum consecutive shifts
+      maxs := MinConsecutiveShifts(i) - 1
+      forall (s in 1..maxs) do
+        maxd := PlanningHorizon - (s+1)
+        forall (d in 1..maxd) do
+          MinConsecutiveShiftsCS(i,s,d) := (sum(t in ShiftID) ShiftAssigned(i,d,t)) + s - 1 -
+          (sum(j in d+1..d+s, t in ShiftID) ShiftAssigned(i,j,t)) +
+          (sum(t in ShiftID) ShiftAssigned(i, d+s+1, t)) >= 0
+        end-do
+      end-do
+
+      ! Minimum consecutive days off
+      maxs := MinConsecutiveDaysOff(i) - 1
+      forall (s in 1..maxs) do
+        maxd := PlanningHorizon - (s+1)
+        forall (d in 1..maxd) do
+          MinConsecutiveDaysOffCS(i,s,d) := (1 - sum(t in ShiftID) ShiftAssigned(i,d,t)) +
+          (sum(j in d+1..d+s, t in ShiftID) ShiftAssigned(i,j,t)) +
+          (1 - sum(t in ShiftID) ShiftAssigned(i, d+s+1, t)) >= 1
+        end-do
+      end-do
+
+      ! Maximum weekends constraint
+      MaxNumWeekendsCS(i) := sum(w in Weekends) WeekendShiftAssigned(i,w) <= MaxWeekends(i)
+      forall (w in Weekends) do
+        MinWeekendsCS(i,w) := sum(t in ShiftID) (ShiftAssigned(i, 7*w - 1, t) + ShiftAssigned(i, 7*w, t)) >= WeekendShiftAssigned(i,w)
+        MaxWeekendsCS(i,w) := sum(t in ShiftID) (ShiftAssigned(i, 7*w - 1, t) + ShiftAssigned(i, 7*w, t)) <= 2*WeekendShiftAssigned(i,w)
+      end-do
+    end-do
+
+
+  ! HC9: Coverage requirements
+  forall (d in Days, t in ShiftID) do
+    CoverageCS(d,t) := (sum(i in NurseID) ShiftAssigned(i,d,t)) - NursesAbovePreferredCoverage(d,t) + NursesBelowPreferredCoverage(d,t) = PreferredCoverage(d,t)
+  end-do
+
+  ! Minimize the penalty
+  minimise(TotalPenalty)
+  endtime:= gettime
+  writeln("End running model for dataset ", dataset)
+
+  ! --------------------------------------------------------------------------
+  ! -------------------    Check and Print Results   -------------------------
+  ! --------------------------------------------------------------------------
+
+  ! Print status of solve progress at the end of the model run
+  procedure print_status
+  declarations
+    status: string
+  end-declarations
+  case getprobstat of
+    XPRS_OPT: status:="Solved to optimality"
+    XPRS_UNF: status:="Unfinished"
+    XPRS_INF: status:="Infeasible"
+    XPRS_UNB: status:="Unbounded"
+    XPRS_OTH: status:="Unsolved or objective worse than cutoff"
+    else status:="???"
+  end-case
+  writeln("Problem status: ", status)
+  end-procedure
+
+
+  ! Print Nurse Schedule within Xpress
+  writeln("Nurse schedule:")
+  writeln
+  write("NurseID")
+  forall(d in Days) write(",", d)
+  writeln
+
+  forall (i in NurseID) do
+      write(i)
+      forall (d in Days) do
+        if sum(t in ShiftID) getsol(ShiftAssigned(i,d,t)) > 0 then
+          forall (t in ShiftID) do
+            if getsol(ShiftAssigned(i,d,t)) > 0 then
+              write(",", t)
+            end-if
+          end-do
+        else
+          write(",", " ")
+        end-if
+      end-do
+    writeln
+  end-do
+  writeln
+
+
+
+  ! Checks to ensure that all constraints are satisfied
+  ! writeln("Checking that nurses are not assigned more than one shift per day")
+  forall (i in NurseID, d in Days) do
+    if (sum(t in ShiftID) getsol(ShiftAssigned(i,d,t)) >= 2) then
+      writeln("Nurse ", i, " has more than one shift assigned on day ", d)
+    end-if
+  end-do
+
+  writeln
+
+  ! writeln("Checking Forbidden Shift constraint")
+  forall (d in 1..PlanningHorizon-1) do
+      forall(i in NurseID, t in ShiftID) do
+        if getsol(ShiftAssigned(i,d,t)) + sum(u in ForbiddenSets(t)) getsol(ShiftAssigned(i, d+1, u)) >= 2 then
+          writeln("Nurse ", i, " on Days ", d, " and ", d+1)
+        end-if
+      end-do
+  end-do
+
+  writeln
+
+  ! writeln("Checking Max shifts constraint")
+  forall (i in NurseID, t in ShiftID) do
+    if sum(d in Days) getsol(ShiftAssigned(i,d,t)) >= MaxShifts(i,t) + 1 then
+      writeln("Nurse ", i)
+    end-if
+  end-do
+
+  writeln
+
+  ! writeln("Checking Min and Max work times constraint")
+  forall (i in NurseID) do
+      if sum(d in Days, t in ShiftID) ShiftLength(t)*getsol(ShiftAssigned(i,d,t)) <= MinTotalMinutes(i) - 1 then
+        write("Nurse ", i)
+      elif sum(d in Days, t in ShiftID) ShiftLength(t)*getsol(ShiftAssigned(i,d,t)) >= MaxTotalMinutes(i) + 1 then
+        write("Nurse ", i)
+      end-if
+  end-do
+
+  writeln
+
+  ! writeln("Checking Min and max consecutive shifts")
+  forall (i in NurseID) do
+        ! Maximum consecutive shifts
+        cmax := MaxConsecutiveShifts(i)
+        maxd := PlanningHorizon - cmax
+        forall (d in 1..maxd) do
+          if sum(t in ShiftID, j in d..d+cmax) getsol(ShiftAssigned(i,j,t)) >= cmax + 1 then
+            writeln("Nurse ", i)
+          end-if
+        end-do
+
+      ! Minimum consecutive shifts
+        maxs := MinConsecutiveShifts(i) - 1
+        forall (s in 1..maxs) do
+          maxd := PlanningHorizon - (s+1)
+          forall (d in 1..maxd) do
+            if (sum(t in ShiftID) getsol(ShiftAssigned(i,d,t))) + s - 1 -
+              (sum(j in d+1..d+s, t in ShiftID) getsol(ShiftAssigned(i,j,t))) +
+              (sum(t in ShiftID) getsol(ShiftAssigned(i, d+s+1, t))) <= -1 then
+              writeln("Nurse ", i)
+            end-if
+          end-do
+        end-do
+      end-do
+
+  writeln
+
+  ! writeln("Checking Minimum Consecutive Days off constraint")
+  forall(i in NurseID, s in 1..(MinConsecutiveDaysOff(i) - 1)) do
+    forall (d in 1..(PlanningHorizon - (s+1))) do
+        if 1 - (sum(t in ShiftID) getsol(ShiftAssigned(i,d,t))) +
+            (sum(j in d+1..d+s, t in ShiftID) getsol(ShiftAssigned(i,j,t))) + 1 -
+            (sum(t in ShiftID) getsol(ShiftAssigned(i, d+s+1, t))) <= 0 then
+            writeln("Nurse ",i)
+        end-if
+    end-do
+  end-do
+
+  writeln
+
+  ! writeln("Checking weekend constraints")
+  forall (i in NurseID) do
+      if sum(w in Weekends) getsol(WeekendShiftAssigned(i,w)) >= MaxWeekends(i) + 1 then
+        writeln("Nurse ", i)
+      end-if
+      forall (w in Weekends) do
+        if sum(t in ShiftID) (getsol(ShiftAssigned(i, 7*w - 1, t)) + getsol(ShiftAssigned(i, 7*w, t))) <= getsol(WeekendShiftAssigned(i,w)) - 1 then
+          writeln("Nurse ", i)
+        elif sum(t in ShiftID) (getsol(ShiftAssigned(i, 7*w - 1, t)) + getsol(ShiftAssigned(i, 7*w, t))) >= 2*getsol(WeekendShiftAssigned(i,w)) + 1 then
+          writeln("Nurse ", i)
+        end-if
+      end-do
+  end-do
+
+
+
+  writeln
+
+
+  ! writeln("Checking Days Off constraint")
+  forall (i in NurseID) do
+        forall (t in ShiftID, u in DaysOff(i)) do
+          if getsol(ShiftAssigned(i,u,t)) > 0 then
+            writeln("Nurse ", i, ":", DaysOff(i))
+            writeln("Shift ", t, ":", getsol(ShiftAssigned(i, u, t)))
+          end-if
+        end-do
+  end-do
+
+
+  writeln
+
+  ! writeln("Checking Coverage requirements")
+  forall (d in Days, t in ShiftID) do
+
+      if sum(i in NurseID) getsol(ShiftAssigned(i,d,t)) <> getsol(NursesAbovePreferredCoverage(d,t)) - getsol(NursesBelowPreferredCoverage(d,t)) + PreferredCoverage(d,t) then
+        writeln("Day ", d, " Shift ", t)
+        writeln(sum(i in NurseID) getsol(ShiftAssigned(i,d,t)))
+        writeln(getsol(NursesAbovePreferredCoverage(d,t)))
+        writeln(getsol(NursesBelowPreferredCoverage(d,t)))
+        writeln(PreferredCoverage(d,t))
+      end-if
+  end-do
+
+
+
+  writeln
+  writeln
+
+
+  ! Print problem results within Xpress
+  print_status
+  writeln
+  writeln("The minimised penalty = ", getobjval)
+  writeln("Time elapsed: ", strfmt(endtime - starttime, 2), "s.")
+
+
+
+  ! --------------------------------------------------------------------------
+  ! -------------------   Save results to a .csv file   ----------------------
+  ! --------------------------------------------------------------------------
+
+
+
+  ! ! Save model results to a .csv file to use for VNS (if applicable)
+  ! fopen(csvfname, F_OUTPUT)
+
+  ! write("NurseID")
+  ! forall(d in Days) write(",", d)
+  ! writeln
+
+  ! forall (i in NurseID) do
+  !     write(i)
+  !     forall (d in Days) do
+  !       if sum(t in ShiftID) getsol(ShiftAssigned(i,d,t)) > 0 then
+  !         forall (t in ShiftID) do
+  !           if getsol(ShiftAssigned(i,d,t)) > 0 then
+  !             write(",", t)
+  !           end-if
+  !         end-do
+  !       else
+  !         write(",", " ")
+  !       end-if
+  !     end-do
+  !   writeln
+  ! end-do
+
+  ! print_status
+  ! writeln
+  ! writeln("The minimised penalty = ", getobjval)
+  ! writeln("Time elapsed: ", strfmt(endtime - starttime, 2), "s.")
+
+  ! fclose(F_OUTPUT)
+
+
+
+end-model

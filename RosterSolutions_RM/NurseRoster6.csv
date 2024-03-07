@@ -1,0 +1,25 @@
+NurseID,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28
+A,E,E,E,E,E, , ,E,E,E, , ,E,D,D,D,D, , , , ,D,D,D, , ,E,D
+B,L,L,L,L,L, , ,L,L,L,L, , , ,L,L,L, , ,L,L,L,L, , , ,L,L
+C,D,D,D,D,D, , ,L,L,L, , , , ,D,D,L, , ,D,L,L, , ,D,D,D,D
+D,D,D,D, , , , ,E,D, , ,E,D,D, , ,D,D,D, , ,E,E,E, , ,E,D
+E,L,L,L,L,L, , , , ,E,D,D,D,L, , ,E,E,E,E,E, , , ,E,L, , 
+F,E,E,L, , ,E,E,E,E,L, , , , ,E,L,L,L,L, , ,E,E,E, , ,E,L
+G,L, , ,E,E,E,E,E, , ,E,E,E,E,E, , ,E,E, , ,L,L,L,L, , , 
+H, , ,L,L,L,L,L, , , ,L,L, , ,L,L,L,L,L, , , , ,L,L,L,L,L
+I,D,D,D,D,D, , ,D,D,D, , ,D,D,D,D,D, , ,D,D,D, , ,D,D, , 
+J, , ,L,L,L,L,L, , ,L,L,L,L,L, , ,E,L,L, , ,E,E,E,E, , , 
+K,D,D,D,L,L, , , , ,D,D,D,L,L,L, , , ,D,D,D,D,D,D, , , , 
+L,L, , , ,D,D,D,D,D,L, , , , ,E,E,L,L,L, , , ,E,E,E,E,D,D
+M, , , ,E,D, , , ,E,E,E,E, , , ,E,D,D,D,L,L, , , ,E,E,E,L
+N,E,E,E,E,E, , , , ,E,E,E,E,D,D, , , ,E,E,E,E,E,D, , , , 
+O, , ,E,D,D,D,L,L, , , ,D,L,L,L,L,L, , , , ,D,D,D,L, , , 
+P, , ,E, , , , , ,D,L, , , , , , ,E,E,E, , , ,L, , , ,E,D
+Q, , , , ,D, , ,D, , , , ,E,E,E, , , ,E, , , ,E,D,D, , , 
+R, ,E, , ,E,E,E, , , , ,E, , , , ,E,L,L, , , , , ,L, , , 
+Problem status: Solved to optimality
+
+The OM penalty = 1950
+The Underworked penalty = 0
+The minimised penalty = 1950
+Time elapsed: 397.368s.

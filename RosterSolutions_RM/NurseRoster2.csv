@@ -1,0 +1,21 @@
+NurseID,1,2,3,4,5,6,7,8,9,10,11,12,13,14
+A,E,E,L, , ,L,L,L,L,L, , , , 
+B,L, , ,E,E, , ,E,E,E, , ,E,E
+C,L, , ,E,E,L,L, , ,E,E,E, , 
+D,E,E,E,E,E, , , ,E,E,E, , ,E
+E,L, , ,L,L,L,L,L, , ,L,L, , 
+F, , ,L,L,L,L,L, , ,E,E,L, , 
+G,E,E,E,E,L, , , , , ,E,E,E,L
+H,E,E,L, , ,E,E,E,L,L, , , , 
+I, ,L,L,L,L, , ,E,E,L, , ,E,E
+J,L,L,L,L, , , , , ,L,L,L,L,L
+K, , ,L, , , , , ,L, , , ,L,L
+L, , , , , , , , ,L, ,L, ,L,L
+M, ,L, ,E, ,L,L, , , , , , , 
+N, , ,E, , , , , ,E, , , ,E,L
+Problem status: Solved to optimality
+
+The OM penalty = 828
+The Underworked penalty = 0
+The minimised penalty = 828
+Time elapsed: 109.468s.

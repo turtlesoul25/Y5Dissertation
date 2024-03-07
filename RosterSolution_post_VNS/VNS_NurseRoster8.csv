@@ -1,0 +1,31 @@
+NurseID,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28
+A,D, , ,D,D,D,N,N, , ,D,D,D,D,N, , ,D,N, , ,D,D,D,D,D, , 
+B,E,E,E,D, , , ,N,N, , ,E,E,E,E,N, , ,E,E,E,N, , ,E,E, , 
+C,D,D,D,N, , , ,D,D,D,D,D, , ,D,D, , ,D,D,N,N,N, , ,D,D, 
+D,L,L,L,L,L, , ,L,L,L, , ,D,D,D, , ,L,L,L,L, , ,D,L,L, , 
+E,N, , ,E,E,D,D, , ,E,E,D,D,N, , ,E,E,E, , ,E,E,E,N,N, , 
+F,D, , ,E,E,E,E,N, , ,E,E,E,E,N, , ,N,N, , ,E,E,D,D,D, , 
+G,D,D,D,D,D, , ,D,D,D,N,N, , , ,N,N, , ,D,D,D,D, , , ,D,D
+H,E,E,E,D,D, , ,E,E,E,E, , , ,E,E, , ,E,E,E,D,D, , , ,E,E
+I, ,E,N,N,N, , ,E,E,E,E,D, , , ,E,N, , ,E,E,E,E,E, , ,E,E
+J,L,N,N, , ,L,L,L,N,N, , , , ,L,L,L,L, , ,L,L,L,L,L, , , 
+K,E,E,N,N,N, , ,E,D,N, , ,E,E, , ,D,D,D,D,D, , ,E,E,E, , 
+L,E,E,E,E,E, , ,E,E, , ,E,E,E, , ,D,D,D, , ,D,N,N, , ,N,N
+M, , , ,L,L, , ,L,L,L,L,N, , ,L,L,L, , ,L,L,N, , ,L,L,N,N
+N,L, , ,L,L,L,L,N, , ,L,L,L,L,N, , ,L,N, , ,L,L,L,L,N, , 
+O,L,L,L,L,L, , , , ,E,E,E,L,L, , ,E,E,E, , ,E,E,L, , ,L,L
+P, , ,E,E,E,E,E, , ,E,E,D, , ,E,D,D,D,D, , ,E,E,D, , ,E,E
+Q,L,L, , , ,E,E,L,L,N,N, , , ,L,L,N,N, , , ,L,L,L,L,L,L, 
+R,D,D,D,D, , , , ,D,D, , , , ,D,D,D,D,D, , , ,D,D,D,D,D,D
+S,L,L,L,L, , , ,D,L,L,L, , , ,L,L,L,L,L,L, , , , , ,D,D,L
+T,L,L,L,L,L, , , ,E,L,L,L, , , ,D,D,D,L,L,L, , , ,E,E,E, 
+U,E,E, , , ,E,E,E,D,D,D, , , ,E,E,E,E,E,N, , , ,N,N,N, , 
+V,N,N, , , ,E,E,L,L,L, , , , ,E,E,L,N, , , ,L,L,L,L,L,N, 
+W, , ,E,E,E,D,D,D, , , ,E,E,E,D,D,N, , , , ,D,D,N,N,N, , 
+X, ,D, , , ,N,N, , ,D, , ,D,D,D, , , ,D,D,D, , , , , , , 
+Y, , , ,D, , , , , ,D, , ,L,L,L,L,L, , ,L,L, , , , , ,L, 
+Z, , , ,L,L,L,L, , ,L,L,L,N,N, , , , , , ,E, , , , , , , 
+AA, ,D, , , ,L,L, , ,D, , ,L,L,N,N, , , ,D,L, , , , , , , 
+AB, ,N, , ,N, , ,L, , , ,L,L,L, , , , ,E,E,E, , , , , ,E, 
+AC, , , , , ,D,D, , , , , ,D,D, , , , , ,D,D, ,N, , , , , 
+AD, , , , , ,L,L, , , , ,N, , , , , ,L, ,D,L, , , , , ,L, 
