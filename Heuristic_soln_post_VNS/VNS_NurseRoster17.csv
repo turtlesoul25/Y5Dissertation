@@ -1,0 +1,33 @@
+,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56
+A,L,L,N,N, , , ,L,L,L,L,L, , ,E,E,L,L,L, , ,D,L,L, , ,L,N,N,N,N, , ,L,L, , , ,D,D, , ,E,E,E,L,L, , ,L,L,N,N,N, , 
+B, , ,E,E,E, , ,L,L,L,L,L, , ,L,L,L,L,L, , ,L,L,L,L, , ,E,E,L,L,L, , , ,L,L,L,L, , ,L,L,L,L,L, , ,E,L,L, , , ,E,E
+C,E,E, , , , , ,D,D,D,D,D, , , ,D,D,N,N, , ,D,D,D,D,D, , ,E,D,D,D,D, , ,E,E,E, , ,D,D,D,D,D, , ,E,D, , ,D,D,D,D,D
+D,L,L,L,L,L, , ,D,D,L,L,L, , ,D,D,D,L,L, , ,E,D,L,L,L, , ,E,L,L,L,L, , , , , , , , , ,E,L,L,L,L, , ,E,L,L,L,L, , 
+E,E,D,N, , , , ,D,D,D,D,D, , ,D,D,N,N,N, , ,E,E,E,E,D, , ,E,D,N, , ,E,D,D,D,D, , ,E,D,D,D,D, , , , ,E,E,D,D,D, , 
+F,L,L,L,L, , , , , ,D,D,L, , ,E,L,L,L,L, , ,D,L,L,L,L, , ,E,D,D,D,L, , ,E,D,L,L,L, , ,D,D,D,D,D, , ,E,D,D,D, , , 
+G,E,E,E,E,E, , ,N,N,N,N,N, , , , , ,L,L, , ,E,L,L,L,L, , ,L,L,L,L,L, , ,E,L,L,L,L, , , , , ,E,L,L,L,L, , ,E,L,L,L
+H,L,L,L,L, , , , ,L,L,L,L,L, , , , ,E,E, , ,L,L,L,L,L, , ,L,L,L,L,L, , ,E,E,E,E,E, , ,E,E,E,E,E, , ,E,L,L,L,L, , 
+I,E,E, , , , , ,E,D,D,D,D, , ,D,D,D,D,D, , , ,E,D,D,D,D, , ,E,E,D,D, , ,D,D,D,D,D, , ,D,D,D,D,D, , , ,E,E,E,E,E, 
+J,L,L,L,L,L, , ,L,L,L,L,L, , ,E,L,L,L, , , , ,L,L, , ,E,D,D,D,D, , , , ,E,L,L,L,L, , ,D,D,D,L,L, , ,D,D,D,D,D, , 
+K,E,N,N, , , , ,D,D,D,D,D, , , , ,E,E,E, , ,E,D,D,N,N, , ,E,E,D,D,D, , ,E,D,D,D,D, , , ,D,D,N,N, , ,D,D,D,D,D, , 
+L,L,L,L,L, , , ,L,L,L,L,N, , ,E,L,L,L,N, , ,E,L,L,N,N, , , , , ,N,N, , ,L,L,L,L,L, , ,E,E,E,E,E, , ,E,E,E,E,E, , 
+M,L,L,L,L, , , ,L,L,L,L,L, , ,L,L,L,L,L, , , ,D,L,L,L,L, , ,E,L,L,L,L, , ,E,D,D,L, , ,L,L,L,L,L, , ,E,E,L, , , , 
+N,L,L, , , , , , ,E,N,N,N, , ,D,D,L,L,L, , ,E,E,E,L,L, , ,L,L,L,L,L, , ,D,D,D,D,L, , ,E,E,E,E,E, , ,L,L,L,L,L, , 
+O,E,E, , , , , ,E,E,E,E, , , ,E,N,N,N,N, , ,E,E,E,E,E, , ,E,E,E,E,E, , ,E,E,E,E,E, , ,E,E,E,E,E, , ,E,E,E,E,E, , 
+P,D,L,L,L, , , ,D,D,D,L,L, , ,D,L,L,L,L, , ,D,L,L,L,L, , ,D,D,D, , ,D,D,D,L,L, , ,D,L,L,L, , , , ,D,D,D,D,L, , , 
+Q, , , ,L,L, , , ,N,N,N,N, , ,L,L,L,L,L, , ,E,E,L,L,N, , ,L,L,L,L,L, , ,E,E,E,N,N, , , , , ,E,E,L,L,L, , ,E,E,E,N
+R,D,D,D,N,N, , ,E,D,D,D,D, , ,D,D,D,D,D, , ,D,D,D,D,D, , ,D,D,D,D,D, , ,E,E,E,E,D, , ,E,E,E,D,D, , , , , , , , , 
+S,L,L,L,L, , , ,E,E,L,L,L, , ,D,D,L,L,L, , , , , ,E,E,D,L,L, , ,L,L, , ,D,D, , ,D,D,D,L,L, , ,E,E,E,E,E, , ,E,D,D
+T,E,L,L,L,L, , , , , , , ,E,E,E,E,L, , , , ,L,L,L,L,L, , ,E,E,E,L,N, , ,L,L,L,N,N, , ,L,L,L,L,L, , ,E,E,L,L,L, , 
+U,D,L, , , , , , ,E,E,N,N, , ,D,D,D,D,L, , ,D,L,L,L,L, , ,D,N,N,N,N, , ,D,D,L,L,L, , , ,E,L,L,L,L, , ,D,L,L,L,L, 
+V,E,D,L,L,N, , ,E,E,E,D,D, , ,D,D,L,L,L, , ,E,D,D,D,L, , , , , , , , , ,D,L,L,L,L, , ,E,D,D,L,L, , ,D,D,L,L,L, , 
+W,E,L,L,L,L, , , , , , ,D,D,D,L,L, , ,D,D,L,N,N, , , , , ,E,E,E,L,L, , ,E,D,D,L,L, , ,E,D,D,L,L, , ,L,L,L,L,L, , 
+X,D,L,L,L, , , ,D,D, , , , , ,L,L,L,L,L, , ,D,L,L,L,L, , ,E,E,D,D,D, , ,L,L,L,L,L, , ,E,E,L,L,L, , ,E,E,D,D,D, , 
+Y,L,L,L,L, , , ,E,D,D,L,L, , ,N,N,N,N,N, , ,D,L,L, , , , , ,D,L,L,L,L, , ,E,E,E,E,D, , ,L,L,L,L, , ,E,L,L,L,L, , 
+Z,E,E,E,E, , , ,E,E,E,E,E, , ,E,E,E,E,E, , , , ,E,E,E, , ,E,E,E,E,E, , ,E,E,E,E,E, , , , ,E,E,N,N,N, , ,E,E,E, , 
+AA,L,L,L,L,L, , ,E,D,D, , , , ,L,L,L,N,N, , ,D,L,L,L, , , ,E,E,L,L,L, , , , ,L,L,N, , ,E,D,D,N,N, , ,D,L,L,L,L, , 
+AB, , , , , , , ,E,E,N,N,N, , ,D,N,N,N,N, , ,D,L,L,L,L, , ,E,D,D,D,D, , ,E,D,L,L,L, , ,L,L,L,L,L, , ,L,L,L,L, , ,E
+AC,E,L,L,L, , , ,D,D,D,L,L, , ,E,E,E,L,L, , ,D,L,L,L,L, , ,E,E,D,D, , , , , ,D,D,D,N,N, , ,E,D,N, , ,D,D,D,D,L, , 
+AD,E,E,D, , , , ,E,D,D,D,L, , ,E,E,E,E,E, , ,D,L,L,L, , ,L,L,L,L,L, , ,E,D,D,D,L, , , , ,E,D,D,L,L, , ,L,L,L,L, , 
+AE,L,N, , , , , , ,E,L,L,L, , ,E,L,L,L, , , ,D,L,N,N, , , ,D,L,L,L, , , ,L,L,L,L, , ,E,D,L,L, , ,E,E,E,D, , ,E,L,N
+AF,L,L,L,L, , ,L,L,L,L, , ,L,L,N,N, , ,E,D,D,D, , ,D,L, , , , ,L,L,L,L, , ,E,D,D,L, , ,L,L,L,L, , , ,E,L,L, , , , 
